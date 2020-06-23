@@ -17,30 +17,45 @@ require_once 'Verif.php';
 </head>
 
 <body>
-  <header></header>
+    <header></header>
 
-        <?php if (!empty($_POST) && count($error) < 1) { ?>
+    <?php if (!empty($_POST) && count($error) < 1) { ?>
 
-            <div id="validateform">
-                <h2>Nom :</h2> <p> <?= htmlspecialchars($_POST['FirstName']) ?></p>
-                <h2>Prénom : </h2><p> <?= htmlspecialchars($_POST['LastName']) ?></p>
-                <h2>Date de Naissance :</h2> <p> <?= $_POST['BirthDate'] ?></p>
-                <h2>Pays de Naissance :</h2><p>  <?= htmlspecialchars($_POST['BirthCountry']) ?></p>
-                <h2>Nationalité :</h2><p>  <?= htmlspecialchars($_POST['Nationality']) ?></p>
-                <h2>Mail :</h2> <p> <?= htmlspecialchars($_POST['Mail']) ?></p>
-                <h2>Telephone :</h2> <p> <?= htmlspecialchars($_POST['NumPhone']) ?></p>
-                <h2>Adresse :</h2> <p> <?= htmlspecialchars($_POST['Adress']) ?></p>
-                <h2>Numéro Pôle Emploi </h2><p>  <?= htmlspecialchars($_POST['NumPoleEmploi']) ?></p>
-                <h2>Diplôme </h2><p>  <?= htmlspecialchars($_POST['Degree']) ?></p>
-                <h2>Nombre de Badge :</h2> <p> <?= htmlspecialchars($_POST['NumBadge']) ?></p>
-                <h2>Lien Code Academy :</h2> <p> <?= htmlspecialchars($_POST['LinkCodeAcademy']) ?></p>
-                <h2>Hero :</h2> <p> <?= htmlspecialchars($_POST['Hero']) ?></p>
-                <h2>Hacks :</h2>  <p><?= htmlspecialchars($_POST['Hacks']) ?></p>
-                <h2>Expériences :</h2> <p> <?= htmlspecialchars($_POST['Experiences']) ?></p>
-            </div>
-        
-        <?php } else { ?>
-            <div class="container">
+        <div id="validateform">
+            <h2>Nom :</h2>
+            <p> <?= htmlspecialchars($_POST['FirstName']) ?></p>
+            <h2>Prénom : </h2>
+            <p> <?= htmlspecialchars($_POST['LastName']) ?></p>
+            <h2>Date de Naissance :</h2>
+            <p> <?= htmlspecialchars($_POST['BirthDate']) ?></p>
+            <h2>Pays de Naissance :</h2>
+            <p> <?= htmlspecialchars($_POST['BirthCountry']) ?></p>
+            <h2>Nationalité :</h2>
+            <p> <?= htmlspecialchars($_POST['Nationality']) ?></p>
+            <h2>Mail :</h2>
+            <p> <?= htmlspecialchars($_POST['Mail']) ?></p>
+            <h2>Telephone :</h2>
+            <p> <?= htmlspecialchars($_POST['NumPhone']) ?></p>
+            <h2>Adresse :</h2>
+            <p> <?= htmlspecialchars($_POST['Adress']) ?></p>
+            <h2>Numéro Pôle Emploi </h2>
+            <p> <?= htmlspecialchars($_POST['NumPoleEmploi']) ?></p>
+            <h2>Diplôme </h2>
+            <p> <?= htmlspecialchars($_POST['Degree']) ?></p>
+            <h2>Nombre de Badge :</h2>
+            <p> <?= htmlspecialchars($_POST['NumBadge']) ?></p>
+            <h2>Lien Code Academy :</h2>
+            <p> <?= htmlspecialchars($_POST['LinkCodeAcademy']) ?></p>
+            <h2>Hero :</h2>
+            <p> <?= htmlspecialchars($_POST['Hero']) ?></p>
+            <h2>Hacks :</h2>
+            <p><?= htmlspecialchars($_POST['Hacks']) ?></p>
+            <h2>Expériences :</h2>
+            <p> <?= htmlspecialchars($_POST['inputAnswer']) ?></p>
+        </div>
+
+    <?php } else { ?>
+        <div class="container">
             <form action="" method="post" novalidate>
 
                 <div class="form-group row">
@@ -106,8 +121,8 @@ require_once 'Verif.php';
                     <div class="col-sm-6 col-12">
                         <label for="Degree">Diplôme * :</label>
                         <select name="Degree" id="" placeholder="Diplôme" class="form-control " value="<?= isset($_POST['Degree']) ? $_POST['Degree'] : '' ?>" required>
-                           
-                            <option value="Choix" <?= isset($_POST['Degree']) && $_POST['Degree'] == 'Choix' ? 'selected' : '' ?>  selected disabled  >selectionner votre Diplôme</option>
+
+                            <option value="Choix" <?= isset($_POST['Degree']) && $_POST['Degree'] == 'Choix' ? 'selected' : '' ?> selected disabled>selectionner votre Diplôme</option>
                             <option value="sansBac" <?= isset($_POST['Degree']) && $_POST['Degree'] == 'sansBac' ? 'selected' : '' ?>>sans Bac</option>
                             <option value="Bac" <?= isset($_POST['Degree']) && $_POST['Degree'] == 'Bac' ? 'selected' : '' ?>>Bac</option>
                             <option value="Bac+2" <?= isset($_POST['Degree']) && $_POST['Degree'] == 'Bac+2' ? 'selected' : '' ?>>Bac +2</option>
@@ -136,45 +151,32 @@ require_once 'Verif.php';
                 <div class="form-group row">
                     <div class="col-12">
                         <label for="Hero">Si vous étiez un super héros/une super héroïne, qui seriez-vous et pourquoi ? *</label>
-                        <textarea name="Hero" id="" class="form-control" required rows="5">
-                        <?= isset($_POST['Hero']) ? $_POST['Hero'] : '' ?>
-            </textarea>
+                        <textarea name="Hero" id="" class="form-control" required rows="5"><?= isset($_POST['Hero']) ? $_POST['Hero'] : '' ?></textarea>
                         <span><?= (isset($error['Hero'])) ? $error['Hero'] : '' ?></span>
                     </div>
                 </div>
                 <div class="form-group row">
                     <div class="col-12">
                         <label for="Hacks">Racontez-nous un de vos "hacks" (pas forcément technique ou informatique) *</label>
-                        <textarea name="Hacks" id="" class="form-control" required rows="5">
-                        <?= isset($_POST['Hacks']) ? $_POST['Hacks'] : '' ?>
-            </textarea>
-            <span><?= (isset($error['Hacks'])) ? $error['Hacks'] : '' ?></span>
+                        <textarea name="Hacks" id="" class="form-control" required rows="5"><?= isset($_POST['Hacks']) ? $_POST['Hacks'] : '' ?></textarea>
+                        <span><?= (isset($error['Hacks'])) ? $error['Hacks'] : '' ?></span>
                     </div>
                 </div>
                 <div class="form-group row">
-
                     <div class="col-12">
-                        <label for="Experiences">Avez vous déjà eu une expérience avec la programmation et/ou l'informatique avant de remplir ce formulaire ? *
+                        <label for="inputAnswer">
+                            Avez vous déjà eu une expérience avec la programmation et/ou l'informatique avant de remplir ce formulaire ? *
                         </label>
-                        <textarea name="Experiences" id="" class="form-control"  required rows="5">
-                        <?= isset($_POST['Experiences']) ? $_POST['Experiences'] : '' ?>
-                         </textarea>
-                         <span><?= (isset($error['Experiences'])) ? $error['Experiences'] : '' ?></span>
-                    </div>
-                </div>  
-                <!-- <div class="form-group row">
-                <div class="col-12">
-                <label for="Experiences">
-                    Avez vous déjà eu une expérience avec la programmation et/ou l'informatique avant de remplir ce formulaire ? *
-                </label>
                         <div>
-                <label for="inputAnswer">Oui</label>
-                <input class="with-gap" name="inputAnswer" type="radio" value="Oui">
-                <label for="inputAnswer">Non</label>
-                <input class="with-gap" name="inputAnswer" type="radio" value="Non">
+                            <label for="inputAnswer">Oui</label>
+                            <input class="with-gap" name="inputAnswer" type="radio" value="Oui" <?= isset($_POST['inputAnswer']) && $_POST['inputAnswer'] == 'Oui' ? 'checked' : '' ?>> 
+                            
+                            <label for="inputAnswer">Non</label>
+                            <input class="with-gap" name="inputAnswer" type="radio" value="Non"  <?= isset($_POST['inputAnswer']) && $_POST['inputAnswer'] == 'Non' ? 'checked' : '' ?>>
+                        </div>
+                        <span><?= (isset($error['inputAnswer'])) ? $error['inputAnswer'] : '' ?></span>
+                    </div>
                 </div>
-                </div>
-                </div> -->
                 <div class="form-group row">
                     <div class="col-12">
                         <input type="submit" name="submit" value="Envoyer le Formulaire" class="form-control" id="btnsubmit">
@@ -185,13 +187,14 @@ require_once 'Verif.php';
             </form>
 
         <?php } ?>
-            </div>
-<footer></footer>
+        </div>
+        <footer></footer>
 
 
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 
-    </body>
+</body>
+
 </html>

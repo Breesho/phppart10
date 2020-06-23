@@ -5,7 +5,7 @@ $mailRegex = "/^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/";
 $phoneRegex = "/(0)+[0-9]{1}( ){0,1}+[0-9]{2}( ){0,1}+[0-9]{2}( ){0,1}+[0-9]{2}( ){0,1}+[0-9]{2}/";
 $NumPoleEmploi = "/[0-9]{7}[a-zA-Z]{1}/";
 $LinkCodeAcademy = "/https?:\/\/(www\.)?(codecademy)\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)/";
-$textarea = "/^[a-zA-ZéèêëiîïôöüàäçÉÀÂÛÔÎÙÈÊ\" -,!.;:?()]{20,500}$/";
+$textarea = "/^[a-zA-ZéèêëiîïôöüàäçÉÀÂÛÔÎÙÈÊ\" -,!.;:?()]{5,500}$/";
 // var_dump($_POST);
 $error = [];
 
@@ -124,7 +124,6 @@ if (isset($_POST['NumBadge'])) {
     };
 }
 
-
 if (isset($_POST['Hero'])) {
     if (!preg_match($textarea, $_POST['Hero'])) {
         $error['Hero'] = 'Mauvais Format';
@@ -143,12 +142,16 @@ if (isset($_POST['Hacks'])) {
     };
 }
 
-if (isset($_POST['Experiences'])) {
-    if (!preg_match($textarea, $_POST['Experiences'])) {
-        $error['Experiences'] = 'Mauvais Format';
-    };
-    if (empty($_POST['Experiences'])) {
-        $error['Experiences'] = 'Veuillez Renseigner le champ';
-    };
-}
-
+/* Select Option oui/non */
+if (isset($_POST['submit'])) {
+    if (!array_key_exists('inputAnswer', $_POST)) {
+        $error['inputAnswer'] = 'Selectionner Oui / Non';
+    } else {
+        $messageExpInf = htmlspecialchars($_POST['inputAnswer']);
+    }
+    if(isset($_POST['inputAnswer'])){
+        if (!($_POST['inputAnswer'] == 'Non' || $_POST['inputAnswer'] == 'Oui' )) {
+            $error['inputAnswer'] = 'Veuillez sélectionner une case';
+        }
+    }
+} 

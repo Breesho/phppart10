@@ -10,8 +10,16 @@
     <title>TP-3</title>
 </head>
 <style> 
+table {
+    width: 100%;
+}
 thead th {
+    width: 25%;
     text-align: center;
+    margin: 0 auto;
+    background-color: #6699cc;
+    color: white;
+    padding: 10px;
 }
 </style>
 <body>

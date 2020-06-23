@@ -25,6 +25,9 @@ $portrait4  = array(
     'portrait' => 'http://upload.wikimedia.org/wikipedia/commons/d/d5/Jean_racine.jpg'
 );
 
+function ShowImgv2(){
+
+}
 
 
 function ShowImg($NamePortrait)
@@ -32,14 +35,14 @@ function ShowImg($NamePortrait)
 
     foreach ($NamePortrait as $key => $value) {
         if ($key == 'portrait') {
-            $ShowImg = '<img src="' . $value . '" width="250px">';
+            $ShowImg = '<img src="' . $value . '" width="200px" height="auto"> <br>';
         } elseif ($key == 'name') {
             $ShowName = "$value <br>";
         } elseif ($key == 'firstname') {
             $Showfirstname =   "$value <br>";
         }
     }
-    return " $ShowName  $Showfirstname  $ShowImg" ;
+    return " $ShowImg  $ShowName  $Showfirstname " ;
 }
 
 
