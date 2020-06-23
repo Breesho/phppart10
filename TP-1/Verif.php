@@ -57,7 +57,7 @@ if (isset($_POST['Nationality'])) {
 }
 
 if (isset($_POST['Mail'])) {
-    if (!preg_match($mailRegex, $_POST['Mail'])) {
+    if (!filter_var($_POST['Mail'], FILTER_VALIDATE_EMAIL)) {
         $error['Mail'] = 'Mauvais Format';
     };
     if (empty($_POST['Mail'])) {
@@ -94,14 +94,20 @@ if (isset($_POST['NumPoleEmploi'])) {
 /* Select Option*/
 if (isset($_POST['submit'])) {
     if (!array_key_exists('Degree', $_POST)) {
-        $error['Degree'] = 'Merci de sélectionnr un choix';
+        $error['Degree'] = 'Merci de sélectionner un niveau de diplôme';
     } else {
         $messageDegree = htmlspecialchars($_POST['Degree']);
+    }
+    if(isset($_POST['Degree'])){
+
+        if (!($_POST['Degree'] == 'Bac' || $_POST['Degree'] == 'sansBac' || $_POST['Degree'] == 'Bac' || $_POST['Degree'] == 'Bac+2' || $_POST['Degree'] == 'Bac+3')) {
+            $error['Degree'] = 'Merci de sélectionner un niveau de diplôme';
+        }
     }
 } 
 
 if (isset($_POST['LinkCodeAcademy'])) {
-    if (!preg_match($LinkCodeAcademy, $_POST['LinkCodeAcademy'])) {
+    if (!filter_var($_POST['LinkCodeAcademy'], FILTER_VALIDATE_URL)) {
         $error['LinkCodeAcademy'] = 'Mauvais Format';
     };
     if (empty($_POST['LinkCodeAcademy'])) {

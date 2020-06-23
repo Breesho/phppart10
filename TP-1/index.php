@@ -31,6 +31,7 @@ require_once 'Verif.php';
                 <h2>Telephone :</h2> <p> <?= htmlspecialchars($_POST['NumPhone']) ?></p>
                 <h2>Adresse :</h2> <p> <?= htmlspecialchars($_POST['Adress']) ?></p>
                 <h2>Numéro Pôle Emploi </h2><p>  <?= htmlspecialchars($_POST['NumPoleEmploi']) ?></p>
+                <h2>Diplôme </h2><p>  <?= htmlspecialchars($_POST['Degree']) ?></p>
                 <h2>Nombre de Badge :</h2> <p> <?= htmlspecialchars($_POST['NumBadge']) ?></p>
                 <h2>Lien Code Academy :</h2> <p> <?= htmlspecialchars($_POST['LinkCodeAcademy']) ?></p>
                 <h2>Hero :</h2> <p> <?= htmlspecialchars($_POST['Hero']) ?></p>
@@ -105,11 +106,12 @@ require_once 'Verif.php';
                     <div class="col-sm-6 col-12">
                         <label for="Degree">Diplôme * :</label>
                         <select name="Degree" id="" placeholder="Diplôme" class="form-control " value="<?= isset($_POST['Degree']) ? $_POST['Degree'] : '' ?>" required>
-                             <option value="NONE" selected disabled>selectionner votre Diplôme</option>
-                            <option value="sansBac">sans Bac</option>
-                            <option value="Bac">Bac</option>
-                            <option value="Bac+2">Bac +2</option>
-                            <option value="Bac+3">Bac+3 ou supérieur</option>
+                           
+                            <option value="Choix" <?= isset($_POST['Degree']) && $_POST['Degree'] == 'Choix' ? 'selected' : '' ?>  selected disabled  >selectionner votre Diplôme</option>
+                            <option value="sansBac" <?= isset($_POST['Degree']) && $_POST['Degree'] == 'sansBac' ? 'selected' : '' ?>>sans Bac</option>
+                            <option value="Bac" <?= isset($_POST['Degree']) && $_POST['Degree'] == 'Bac' ? 'selected' : '' ?>>Bac</option>
+                            <option value="Bac+2" <?= isset($_POST['Degree']) && $_POST['Degree'] == 'Bac+2' ? 'selected' : '' ?>>Bac +2</option>
+                            <option value="Bac+3" <?= isset($_POST['Degree']) && $_POST['Degree'] == 'Bac+3' ? 'selected' : '' ?>>Bac+3 ou supérieur</option>
 
                         </select>
                         <span><?= (isset($error['Degree'])) ? $error['Degree'] : '' ?></span>
@@ -156,12 +158,23 @@ require_once 'Verif.php';
                         </label>
                         <textarea name="Experiences" id="" class="form-control"  required rows="5">
                         <?= isset($_POST['Experiences']) ? $_POST['Experiences'] : '' ?>
-            </textarea>
-            <span><?= (isset($error['Experiences'])) ? $error['Experiences'] : '' ?></span>
+                         </textarea>
+                         <span><?= (isset($error['Experiences'])) ? $error['Experiences'] : '' ?></span>
                     </div>
+                </div>  
+                <!-- <div class="form-group row">
+                <div class="col-12">
+                <label for="Experiences">
+                    Avez vous déjà eu une expérience avec la programmation et/ou l'informatique avant de remplir ce formulaire ? *
+                </label>
+                        <div>
+                <label for="inputAnswer">Oui</label>
+                <input class="with-gap" name="inputAnswer" type="radio" value="Oui">
+                <label for="inputAnswer">Non</label>
+                <input class="with-gap" name="inputAnswer" type="radio" value="Non">
                 </div>
-
-
+                </div>
+                </div> -->
                 <div class="form-group row">
                     <div class="col-12">
                         <input type="submit" name="submit" value="Envoyer le Formulaire" class="form-control" id="btnsubmit">

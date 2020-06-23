@@ -24,6 +24,9 @@ label {
     background-color: #6699cc;
     color: white;
 }
+select {
+    display: block;
+}
 input {
     margin: 10px 0px;
 }
